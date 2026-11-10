@@ -1,0 +1,120 @@
+.phone-step h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1.4;
+  color: var(--text-main);
+}
+
+.wave {
+  font-size: 26px;
+  line-height: 1;
+}
+
+.phone-step .step-lead {
+  margin: 0 0 22px;
+  color: var(--text-sub);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.9;
+}
+
+.phone-step label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-main);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.phone-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  height: 56px;
+  padding: 0 14px;
+  border: 1px solid #ece8df;
+  border-radius: 14px;
+  background: #f7f5f0;
+}
+
+.phone-field:focus-within {
+  border-color: var(--brand);
+  outline: 2px solid color-mix(in srgb, var(--brand) 28%, transparent);
+}
+
+.phone-field.bad {
+  border-color: var(--alert-deep);
+}
+
+.phone-mark {
+  flex: none;
+  color: #8d897f;
+  font-size: 18px;
+}
+
+.phone-field input {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-main);
+  font: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.phone-field input::placeholder {
+  color: #b7b2a8;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.phone-field input:focus {
+  outline: none;
+}
+
+.phone-step .field-error {
+  display: block;
+  min-width: 0;
+  margin-top: 8px;
+  color: var(--alert);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.auth-submit {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 14px 18px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--brand);
+  color: #fff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.auth-submit:hover {
+  background: var(--brand-deep);
+}
+
+.auth-submit:disabled {
+  cursor: default;
+  opacity: 0.55;
+}

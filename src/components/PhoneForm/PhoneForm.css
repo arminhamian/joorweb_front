@@ -1,0 +1,7 @@
+.phone{display:flex;gap:6px;max-width:520px;padding:7px;border-radius:18px;background:#ffffff0f;border:1px solid #ffffff22;backdrop-filter:blur(16px);box-shadow:0 20px 60px -20px #000}
+.phone input{flex:1;min-width:0;background:none;border:0;outline:0;color:#fff;font:inherit;padding:0 14px}.phone input::placeholder{color:#9b97b8}
+.phone input.err{animation:sh .4s}@keyframes sh{25%{transform:translateX(6px)}75%{transform:translateX(-6px)}}
+.phone.sm .btn{padding:8px 14px}
+@media(max-width:600px){.phone .btn{padding:11px 14px}}
+[data-theme=light] .phone{background:#ffffffd9;border-color:#1e1a4a1a;box-shadow:0 20px 50px -24px #4c3fd055,inset 0 1px 0 #fff}
+[data-theme=light] .phone input{color:#17142e}[data-theme=light] .phone input::placeholder{color:#8a87a6}

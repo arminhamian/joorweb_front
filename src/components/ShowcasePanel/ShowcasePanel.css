@@ -1,0 +1,141 @@
+.arch-grid {
+  background-color: var(--showcase);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.showcase {
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 32px 24px 18px;
+  color: #f4f7f5;
+}
+
+.showcase-copy {
+  min-width: 0;
+}
+
+.showcase-pill {
+  display: inline-block;
+  margin: 0 0 18px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #d5e4db;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.showcase h2 {
+  margin: 0 0 12px;
+  max-width: 16em;
+  color: #fff;
+  font-size: clamp(26px, 2.4vw, 34px);
+  font-weight: 900;
+  line-height: 1.55;
+}
+
+.showcase-lead {
+  margin: 0 0 22px;
+  max-width: 36em;
+  color: #b7c7be;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.telemetry {
+  min-width: 0;
+  padding: 16px 16px 14px;
+  border-radius: 18px;
+  background: rgba(6, 22, 16, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.telemetry-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  margin-bottom: 16px;
+}
+
+.bolt {
+  width: 36px;
+  height: 36px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(229, 169, 60, 0.16);
+  font-size: 18px;
+}
+
+.telemetry-name {
+  min-width: 0;
+  display: grid;
+  flex: 1;
+}
+
+.telemetry-name strong {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.telemetry-name small {
+  color: #9fb0a6;
+  font-size: 12px;
+}
+
+.online {
+  flex: none;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.16);
+  color: #6ee7b7;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.telemetry-figs {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
+  gap: 12px;
+}
+
+.telemetry-figs span {
+  display: block;
+  margin-bottom: 4px;
+  color: #9fb0a6;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.telemetry-figs b {
+  display: block;
+  min-width: 0;
+  color: #fff;
+  font-size: clamp(16px, 1.5vw, 22px);
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+.showcase-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 16px;
+  color: #8ea399;
+  font-size: 12px;
+}
+
+@media (max-width: 720px) {
+  .telemetry-figs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

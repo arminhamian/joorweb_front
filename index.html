@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>جوروب | کل کسب‌وکارت روی یه سیستم</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" />
+    <script>
+      (function () {
+        var d = document.documentElement, t = null
+        try { t = localStorage.getItem('jw-theme') } catch (e) {}
+        d.dataset.theme = t || d.dataset.default || 'dark'
+      })()
+    </script>
+  </head>
+  <body class="loading">
+    <script>
+      (function () {
+        var rm = matchMedia('(prefers-reduced-motion: reduce)').matches || location.search.indexOf('static') !== -1
+        if (rm) {
+          document.body.classList.remove('loading')
+          document.documentElement.classList.add('rm')
+        }
+      })()
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

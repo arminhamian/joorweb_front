@@ -1,0 +1,19 @@
+.tog{display:flex;gap:14px;justify-content:center;align-items:center;margin:-20px 0 50px}.tog em{font-style:normal;font-size:12px;background:#22c55e22;color:#4ade80;padding:2px 8px;border-radius:8px}
+#tog{width:58px;height:30px;border-radius:99px;border:1px solid #ffffff26;background:#ffffff10;position:relative;cursor:pointer}#tog i{position:absolute;top:3px;right:4px;width:22px;height:22px;border-radius:50%;background:var(--g);transition:.3s}#tog.on i{right:30px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:center}
+.plan{position:relative;overflow:hidden;border-radius:28px;padding:34px;background:linear-gradient(160deg,#16132a,#0e0c19);border:1px solid var(--line)}
+.plan::before{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at var(--mx) var(--my),#c04cf22a,transparent 45%);opacity:0;transition:.3s;pointer-events:none}
+.plan:hover::before{opacity:1}
+.plan h4{font-size:22px}.plan small{color:var(--mut)}
+.price{margin:18px 0}.price b{font-size:36px;font-weight:900}.price span{color:var(--mut);margin-right:6px}.plan ul{list-style:none;margin-bottom:26px}.plan li{padding:6px 0;color:#ddd8f5}.plan li::before{content:"✓";margin-left:10px;color:#ff7aa8;font-weight:900}.plan .btn{width:100%}
+.plan.hot{background:radial-gradient(ellipse at 50% 0,#ff3d7f44,transparent 60%),linear-gradient(160deg,#2a1450,#150c2a);border-color:#c04cf288;box-shadow:0 0 80px -20px #c04cf2;padding:44px 34px}
+.badge{position:absolute;top:18px;left:18px;background:var(--g);font-size:12px;font-weight:700;padding:4px 12px;border-radius:99px}
+.j5-plans{grid-template-columns:repeat(4,1fr)}.j5-plans .plan{padding:28px 22px}.j5-plans .price b{font-size:28px}
+@media(max-width:1100px){.j5-plans{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.j5-plans{grid-template-columns:1fr}}
+[data-theme=light] .plan{background:linear-gradient(160deg,#ffffffe6,#ffffffb8);border:1px solid #ffffff;box-shadow:0 1px 0 #fff inset,0 2px 6px #1e1a4a0a,0 24px 60px -28px #3b2fa04d;backdrop-filter:blur(18px);color:#17142e}
+[data-theme=light] .plan li{color:#3d3a5c}[data-theme=light] .plan li::before{color:#d0246b}[data-theme=light] .plan small,[data-theme=light] .price span{color:#6b6888}
+[data-theme=light] .plan .btn.glass{background:#f1effb}
+[data-theme=light] .plan.hot{background:radial-gradient(ellipse at 50% 0,#ff3d7f55,transparent 60%),linear-gradient(160deg,#3b1d8f,#5b2bd6);color:#fff;border-color:#a78bfa;box-shadow:0 40px 80px -30px #6d28d9}
+[data-theme=light] .plan.hot li,[data-theme=light] .plan.hot li::before{color:#fff}[data-theme=light] .plan.hot small,[data-theme=light] .plan.hot .price span{color:#ddd6fe}
+[data-theme=light] #tog{background:#fff;border-color:#1e1a4a1c}[data-theme=light] .tog em{background:#dcfce7;color:#15803d}

@@ -1,0 +1,5 @@
+main,section,footer{position:relative;z-index:1}
+#u-thread{position:absolute;top:0;left:0;width:100%;pointer-events:none;z-index:0;overflow:visible}
+#u-tbase{fill:none;stroke:#ffffff0d;stroke-width:2}#u-tline{fill:none;stroke:url(#uthg);stroke-width:2.5;stroke-linecap:round;filter:drop-shadow(0 0 6px #c04cf2) drop-shadow(0 0 16px #c04cf288)}
+#u-tdot{fill:#fff;filter:drop-shadow(0 0 8px #ff3d7f) drop-shadow(0 0 18px #c04cf2)}
+[data-theme=light] #u-tbase{stroke:#1e1a4a0d}[data-theme=light] #u-tline{opacity:.6;filter:drop-shadow(0 0 4px #c084fc)}[data-theme=light] #u-tdot{fill:#fff;filter:drop-shadow(0 0 6px #e5266e) drop-shadow(0 0 2px #7c3aed)}

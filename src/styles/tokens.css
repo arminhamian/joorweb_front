@@ -1,0 +1,46 @@
+:root {
+  --bg-app: #0a110e;
+  --bg-canvas: #0a110e;
+  --bg-card: #111c17;
+  --bg-surface: #111c17;
+  --bg-muted: #182720;
+  --bg-subtle: #182720;
+  --text-main: #f3f2ee;
+  --text-primary: #f3f2ee;
+  --text-sub: #a3b1aa;
+  --text-secondary: #a3b1aa;
+  --text-soft: #687870;
+  --text-muted: #687870;
+  --border-line: #21362c;
+  --border-hairline: #21362c;
+  --brand-deep: #0e3a2b;
+  --brand: #047857;
+  --cash: #059669;
+  --cash-bright: #10b981;
+  --inventory: #0369a1;
+  --inventory-deep: #1e40af;
+  --profit: #d97706;
+  --gold: #e5a93c;
+  --alert: #e11d48;
+  --alert-deep: #b91c1c;
+  --engine-bg: #020617;
+  --engine-text: #fcd34d;
+  --showcase: #091d16;
+}
+
+html[data-theme='light'] {
+  --bg-app: #f4f3ef;
+  --bg-canvas: #f4f3ef;
+  --bg-card: #ffffff;
+  --bg-surface: #ffffff;
+  --bg-muted: #eae8e1;
+  --bg-subtle: #eae8e1;
+  --text-main: #151514;
+  --text-primary: #151514;
+  --text-sub: #57554e;
+  --text-secondary: #57554e;
+  --text-soft: #87847b;
+  --text-muted: #87847b;
+  --border-line: #dfddd5;
+  --border-hairline: #dfddd5;
+}

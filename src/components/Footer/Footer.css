@@ -1,0 +1,7 @@
+footer{border-top:1px solid var(--line);padding:80px 0 24px;color:var(--mut);background:radial-gradient(ellipse at 50% 0,#6d5df51a,transparent 60%)}
+.footg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1.4fr;gap:30px}footer .logo{color:#fff;margin-bottom:14px}footer h5{color:#fff;font-size:16px;margin-bottom:12px}footer a{display:block;padding:4px 0;cursor:pointer;transition:.2s}footer a:hover{color:#fff}
+.soc{display:flex;gap:10px;margin-top:16px}.soc a{width:42px;height:42px;border-radius:12px;background:#ffffff0d;border:1px solid var(--line);display:grid;place-items:center}.soc a:hover{background:var(--g)}
+.copy{border-top:1px solid var(--line);margin-top:50px;padding-top:22px;text-align:center;font-size:14px}
+@media(max-width:1000px){.footg{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.footg{grid-template-columns:1fr}}
+[data-theme=light] footer{background:#12102a;color:#a29fbd;border-top:0;--mut:#a29fbd}[data-theme=light] footer .phone{background:#ffffff10;border-color:#ffffff22}[data-theme=light] footer .phone input{color:#fff}

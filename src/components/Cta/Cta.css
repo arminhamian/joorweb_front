@@ -1,0 +1,7 @@
+.ctab{position:relative;overflow:hidden;text-align:center;border-radius:40px;padding:90px 30px;background:linear-gradient(135deg,#1a0b33,#0e0b1d);border:1px solid #c04cf244}
+.ctab::before{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at var(--mx) var(--my),#c04cf22a,transparent 45%);opacity:0;transition:.3s;pointer-events:none}
+.ctab:hover::before{opacity:1}
+.cglow{position:absolute;width:700px;height:400px;left:50%;top:50%;transform:translate(-50%,-50%);background:radial-gradient(ellipse,#ff3d7f55,#6d5df544 40%,transparent 70%);filter:blur(30px);animation:cg 6s ease-in-out infinite;pointer-events:none}@keyframes cg{50%{transform:translate(-50%,-50%) scale(1.2)}}
+.ctab h2{font-size:clamp(28px,4.4vw,56px);line-height:1.4;position:relative}.ctab p{color:#cbc6e6;margin:10px 0 30px;position:relative}.ctab .phone{margin:auto;position:relative}
+[data-theme=light] .ctab{background:linear-gradient(135deg,#2a1470,#5b21b6 55%,#9d174d);color:#fff;border-color:#a78bfa;box-shadow:0 50px 100px -40px #6d28d9}
+[data-theme=light] .ctab .phone{background:#ffffff1f;border-color:#ffffff40}[data-theme=light] .ctab .phone input{color:#fff}[data-theme=light] .ctab .phone input::placeholder{color:#e9e5ff}[data-theme=light] .ctab p{color:#ede9fe}
