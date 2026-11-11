@@ -44,7 +44,7 @@ The frontend ecosystem must use the Established technology standards below unles
 - Modern CSS and CSS variables.
 - HTML5 semantic elements.
 
-## 2.2 Recommended Libraries
+## 2.2 Technology and Library Status
 
 | Purpose | Technology | Status |
 |---|---|---|
@@ -91,12 +91,12 @@ The primary applications are:
 ### Website
 The Company Website renders published corporate pages, including marketing pages, documentation, and other public content. It does not own the corporate page editor.
 
-Recommended technology: Next.js.
+Established technology: Next.js.
 
 ### Admin
 The unified business management dashboard.
 
-It includes modules such as:
+The modules listed below describe expected product capabilities or illustrative examples. They are not a finalized Admin module map, navigation structure, or route architecture. The final Admin module structure remains Open and needs a separate architectural decision.
 
 - Dashboard
 - Products
@@ -111,25 +111,27 @@ It includes modules such as:
 - Settings
 - AI Assistant
 
-Recommended technology: React + Vite.
+Established technology: React + Vite.
 
 ### Builder
 The shared editor for Joorweb's corporate website and for customer storefronts. It is not a storefront-only tool.
 
 It edits and manages both corporate pages and customer storefront pages. It does not render either public site.
 
-Recommended technology: React + Vite + Puck.
+Established technology: React + Vite + Puck.
 
 ### Storefront
 The Storefront renders published customer storefront pages. It does not own the customer page editor.
 
 It must support multiple stores, custom domains, SEO, and independent storefront configurations.
 
-Recommended technology: Next.js.
+Established technology: Next.js.
 
 ## 3.2 Shared Packages
 
 Shared packages must contain reusable functionality.
+
+The package names listed below are illustrative candidates, not an approved or mandatory package list. Package boundaries and names have not all been finalized. The listed names are examples or potential candidates. Their appearance does not establish approval. Final package architecture must follow frontend-architecture.md.
 
 Examples:
 
@@ -721,7 +723,7 @@ It must provide a consistent experience across all business modules.
 
 ## 14.1 Module Architecture
 
-Modules may include:
+The modules listed below describe expected product capabilities or illustrative examples. They are not a finalized Admin module map, navigation structure, or route architecture. The final Admin module structure remains Open and needs a separate architectural decision.
 
 - Dashboard
 - Products
@@ -1201,7 +1203,7 @@ Document significant changes involving:
 
 ## 25.2 Required Information
 
-A significant architecture change should document:
+A significant architecture change must document:
 
 - Problem
 - Proposed solution
