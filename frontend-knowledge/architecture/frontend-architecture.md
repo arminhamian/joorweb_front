@@ -1,10 +1,8 @@
 # Frontend Architecture
 
-This document describes the greenfield frontend for Joorweb. It does not describe an existing implementation, and it does not create applications, packages, or installs.
+`frontend-rules.md` does not name a 24-section outline for this file. That document has 25 numbered sections plus a final enforcement rule. Those sections stay in `frontend-rules.md` and are not copied here.
 
-`frontend-rules.md` remains the engineering rules. It has 25 numbered sections plus a final enforcement rule. Those sections are not the outline of this file, and they are not copied here.
-
-Section 25.2 of `frontend-rules.md` lists nine fields that must be recorded for each significant architecture decision:
+This file uses the outline that section 25.2 actually requires for an architecture decision:
 
 1. Problem
 2. Proposed solution
@@ -16,440 +14,269 @@ Section 25.2 of `frontend-rules.md` lists nine fields that must be recorded for 
 8. Migration requirements
 9. Testing requirements
 
-Those nine fields are used in section 11. They are not the subject outline of this document. If a field has not been decided, it is marked **Open**. No answer is filled in for an open field.
+Every decision below is labeled **Established**, **Proposed**, or **Open**.
 
-## Status labels
+- **Established** means already agreed: the stack and structure named by the user, or a requirement already written in `frontend-rules.md` that this document keeps.
+- **Proposed** means a recommendation in this file. It is not approved and it is not built.
+- **Open** means a decision is still required.
 
-- **Established** — an architectural decision explicitly confirmed for this frontend. A statement is not Established only because it was written earlier, or only because a rule mentions it.
-- **Proposed** — a recommendation that still needs confirmation. It is not built.
-- **Open** — unresolved. No solution is chosen.
-
-Product requirements are stated as product requirements. They are not treated as implementation decisions.
+Nothing in this file is installed, generated, or treated as an existing application.
 
 ---
 
-## 1. Product context
+## 1. Problem
 
-**Product requirement.** Joorweb is an AaaS platform. The acronym is not expanded. CRM and ERP are inside it, together with:
+Joorweb needs a new frontend for an AaaS platform. The storefront builder is one piece of that platform, not the product.
 
-- Finance: accounting aligned with IFRS, and live profit-and-loss reports.
+The frontend has to cover the company site, the management surface, the visual builder, and public stores as one ecosystem. It must not take its structure from the legacy shop-panel or from the current Vite application.
+
+---
+
+## 2. Proposed solution
+
+### 2.1 Product boundary
+
+**Established.** Joorweb is an AaaS platform. The acronym is not expanded. CRM and ERP are inside it, together with the capabilities already described for the product:
+
+- Finance: full accounting aligned with IFRS, with live profit-and-loss reports.
 - Warehouse: professional inventory, live stock, and valuation by FIFO and weighted average.
 - Storefront: a shop site, plus marketplace connections such as Digikala, Torob, and Basalam.
-- Social: networks such as Instagram, Telegram, and Bale.
-- Orders: tracking from placement through delivery.
+- Social: management of networks such as Instagram, Telegram, and Bale.
+- Orders: automatic tracking from order placement through delivery.
 - Assistant: the user says what they want by voice or chat, and the system carries out the panel operation.
-- Goods flow: a product is defined once, enters the system and the warehouse, is published to other networks and markets with copy suited to each, stock is updated on each sale, and a financial document is recorded.
-- Scale: from a small shop to a large store and a production center. Representatives may sell the whole system under their own brand.
+- Goods flow: a product is defined once, for example from an Instagram post. It enters the system and the warehouse, is published to the other networks and markets with copy suited to each one, stock is updated everywhere on each sale, and a financial document is recorded.
+- Scale: from a small shop to a large store and a production center, under accounting and warehouse standards. Representatives can sell the whole system under their own brand.
 
-The storefront builder is one product capability, not the whole platform. The Builder application, below, is the shared editor for Joorweb's own corporate website and for customer storefronts.
+**Established.** One shared data model and one assistant run the platform. The builder does not define the business.
 
-How representative branding is applied is **Open**. No mechanism is chosen.
+### 2.2 Applications
 
----
+**Established.** The frontend is four applications. They are separate applications, not one rewritten copy of the current Vite app.
 
-## 2. Greenfield principle
-
-**Established.** This frontend is designed from scratch. The legacy shop-panel, any current Vite application, and any current backend, database, or deployment are not architectural constraints.
-
-**Established.** There is no legacy migration requirement unless a later, confirmed dependency creates one. None is confirmed in this document.
-
-**Established.** A panel login may use this palette, and this palette only: page `#F5F6FA`, card `#FFFFFF`, text `#1E293B`, colored panel gradient `#6366F1` → `#4F46E5` → `#7C3AED`. That is a visual choice for that login. It does not define application structure, data flow, publishing, or the platform brand.
-
-Global brand colors, typography, spacing, radius, shadow, and breakpoints are **Open**. Sample colors in `frontend-rules.md` are illustrative and are not adopted here.
-
----
-
-## 3. Applications
-
-Four applications are confirmed. They stay separate. None depends on another application.
-
-| Application | Responsibility | Runtime |
+| Application | Role | Runtime |
 |---|---|---|
-| Company Website | Render the published Joorweb corporate website | Next.js |
-| Admin | Management surface for the platform | React + Vite |
-| Builder | Edit and manage pages for the corporate website and for customer storefronts | React + Vite + Puck |
-| Storefront | Render published customer storefronts | Next.js |
+| Company site | Corporate site, marketing, documentation, and other public content | Next.js |
+| Admin | Unified management surface for the platform | React on Vite |
+| Builder | Visual editor for website and storefront pages | React and Puck on Vite |
+| Storefront | Public online stores | Next.js |
 
-**Company Website.** Renders published corporate pages. It does not edit them.
+**Established.** Admin is the management surface for the whole platform, including CRM, ERP, finance, warehouse, orders, marketing, integrations, settings, and the assistant. The builder edits storefront and website presentation. It is not the system of record for products, stock, prices, customers, or accounting.
 
-**Admin.** The place where the business is operated: CRM, ERP, finance, warehouse, orders, marketing, and the assistant are product areas this surface must be able to serve. This document does not confirm a module map, route map, or information architecture for Admin.
+**Established.** `frontend-rules.md` also names these admin areas: Dashboard, Products, Inventory, Sales, Orders, Customers, Accounting, Reports, Marketing, Integrations, Settings, and AI Assistant. This file does not add further modules.
 
-**Builder.** A shared website-building application. It edits and manages both:
+**Open.** How a representative brand is applied across the four applications. The product allows representatives to sell the system under their own brand. No branding mechanism is chosen here.
 
-- Joorweb's own corporate website.
-- Customer storefront websites.
+### 2.3 Repository
 
-It is not a storefront-only tool. It does not replace Company Website or Storefront as the public renderer.
+**Established.** One Turborepo repository, managed with pnpm. Node.js 16 is forbidden. No Node version above that ban is chosen.
 
-**Storefront.** Renders published customer storefront pages. It does not edit them.
+**Established.** `frontend-rules.md` requires pnpm workspaces together with Turborepo. The approved workspace layout is defined in `architecture/project-structure.md`.
 
-**Relationship.** Builder produces and manages page content. Company Website renders published corporate pages. Storefront renders published customer storefront pages. Each rendering application renders the pages that belong to it. Builder does not serve either public site.
+**Established.** The approved repository layout is one pnpm workspace with four applications and four initial shared packages:
 
-**Established boundary rules.**
+- `apps/website` — Company Website, Next.js.
+- `apps/admin` — Admin, React + Vite.
+- `apps/builder` — Builder, React + Vite + Puck.
+- `apps/storefront` — Storefront, Next.js.
+- `packages/ui` — shared UI components.
+- `packages/design-tokens` — shared design tokens and their styling-system integration.
+- `packages/page-schema` — the structured, versioned, Puck-independent page document contract.
+- `packages/page-blocks` — reusable page-block implementations and framework-neutral block definitions that can be used by the relevant editor and public renderers.
 
-- Applications must not depend directly on one another.
-- Shared packages must not depend on applications.
-- Circular dependencies are not allowed.
-- Shared packages hold reusable capabilities, not application-specific business workflows.
+The exact directory tree and package responsibilities are specified in `architecture/project-structure.md`.
 
-Admin's internal screens, and any workflow that belongs to only one application, stay inside that application.
+**Established.** The workspace uses pnpm Workspaces and Turborepo. Node.js 16 is forbidden. The required Node.js version and exact dependency versions remain **Open**.
 
----
+### 2.4 Shared packages and dependency boundaries
 
-## 4. Builder and page model
+**Established.** The four initial shared packages are `ui`, `design-tokens`, `page-schema`, and `page-blocks`, as defined above. No additional shared package is approved by this decision.
 
-**Established.**
+**Established.** Shared packages do not depend on applications. Applications do not depend on one another. Circular dependencies are forbidden. Micro frontends are not introduced. Shared packages contain reusable capabilities, not application-specific business workflows.
 
-- Builder supports corporate website pages and customer storefront pages.
-- Puck is the visual editing layer. It does not own business logic. It is not the canonical page data model.
-- Page Schema is structured, versioned, and independent of Puck's internal editor representation.
-- A published page is rendered by the matching Next.js application: Company Website for the corporate site, Storefront for a customer store.
-- Draft, preview, and published states stay distinct.
-- Shared reusable blocks are supported.
-- Application-specific blocks and capabilities may exist where required.
+**Established.** Puck-specific editor integration belongs inside `apps/builder`; the public renderers must not depend on Puck. `page-blocks` must not turn into a Puck-only package. The Builder may adapt approved blocks to Puck, while Company Website and Storefront render the published page model through their own rendering entry points.
 
-**Established constraint.** Blocks, schema configuration, and publishing rules are not assumed to be identical for the corporate website and for customer storefronts. Sameness is not decided, and difference is not decided.
+**Deferred.** Separate packages for `page-renderer`, `api-client`, `auth`, `permissions`, `i18n`, and general `types` are not part of the initial structure. Their future need can be reconsidered when concrete shared requirements exist. This is not permission to create them pre-emptively.
 
-**Open.** The following are not decided. This document does not pick an answer:
+### 2.5 UI composition
 
-- Whether the corporate website and customer storefronts use exactly the same Page Schema, or compatible schema variants.
-- Whether they use one shared block registry, or separate registries built on shared infrastructure.
-- Which blocks are globally shared, and which are application-specific.
-- Whether corporate website publishing and customer storefront publishing use the same deployment and publishing pipeline.
-- How corporate website identity, domains, environments, and permissions are represented.
-- How tenant-specific domains and host resolution work for customer storefronts.
-- How schema versioning, backward compatibility, publishing, preview, and rollback are implemented.
-
-Business data such as products, stock, prices, customers, and accounting is not defined by Page Schema. Where that data is shown on a page, it has to come from the platform's APIs. The API contracts for that are **Open**.
-
----
-
-## 5. Repository and shared packages
-
-**Established.** The frontend is one monorepo, using pnpm workspaces and Turborepo.
-
-**Established.** Node.js 16 is forbidden. The Node.js version that will be required is **Open**.
-
-**Established.** A shared UI package is part of the architecture, so applications do not each invent the same interface controls. Shared reusable blocks are part of the architecture. Their package names, folder paths, and the split between packages are **Open**. They are included in the final package and directory structure, which is **Open**.
-
-**Proposed, not confirmed.** One possible layout is `apps/website`, `apps/admin`, `apps/builder`, `apps/storefront`, `packages/ui`, and a shared blocks package. This is only a sketch. It is not the decided tree.
-
-**Open.** Which additional shared packages exist. Candidates named by `frontend-rules.md` section 3.2, and not approved here, are `design-system`, `page-schema`, `page-renderer`, `api-client`, `auth`, `permissions`, `i18n`, and `types`. Whether any of these are created, merged, or omitted is not decided. Creating a `page-schema` or `page-renderer` package is not assumed.
-
-**Established.** Whatever packages are added later, they hold reusable capabilities. They do not hold an application's business workflow, and they do not depend on an application.
-
----
-
-## 6. UI composition and styling
-
-**Established.** The UI language is TypeScript. The UI library is React.
+**Established.** TypeScript and React are the language and UI library.
 
 **Established.** Each component owns its style and lives in its own folder. A page only composes components. A module holds data and behavior and has no appearance.
 
-**Established.** Styling is Tailwind and shadcn. That is the styling system for this frontend. CSS Modules are not the chosen system.
+**Established.** Tailwind and shadcn are the styling system. `frontend-rules.md` allows CSS Modules or an approved styling system. Tailwind and shadcn are that approved system. CSS Modules are not the choice.
 
-**Proposed.** shadcn components would live in the shared UI package, one component per folder, and applications would consume that package rather than each generating a private copy. This packaging is not confirmed. The final package structure remains **Open**.
+**Established.** Shared UI components, including the approved shadcn-based components, are owned by `packages/ui`, with one component per folder. Applications consume this shared package rather than maintaining separate copies.
 
-**Open.** Global design tokens, and how Tailwind relates to them. The panel-login palette in section 2 is not the token set.
+**Established.** The same purpose uses the same appearance, behavior, states, spacing, typography, accessibility, and responsive behavior. Interactive components cover the relevant states named in `frontend-rules.md` section 4.3: default, hover, focus, active, disabled, loading, error, success, and empty.
 
-Knowledge files for this frontend are Markdown. That includes this file.
+**Established.** The panel login uses the shop-panel login palette: page `#F5F6FA`, card `#FFFFFF`, text `#1E293B`, and the colored panel gradient `#6366F1` → `#4F46E5` → `#7C3AED`. That palette does not define the architecture and does not set the brand for the rest of the platform. The sample colors in `frontend-rules.md` section 4.1 are illustrative only.
 
----
+**Open.** Brand colors, typography, spacing, radius, shadow, and breakpoints for the platform beyond the panel login. They need an approved design system. This file does not invent them.
 
-## 7. State, forms, and server communication
+### 2.6 Language and layout
+
+**Established.** Persian and English are both first-class. Persian is RTL. English is LTR. Direction is an architectural requirement. Logical CSS properties are preferred over hardcoded left and right.
+
+**Open.** The internationalization library. None is approved.
+
+### 2.7 State, forms, and API
 
 **Established.** Server state uses TanStack Query. Client state uses Zustand. Forms use React Hook Form with Zod.
 
-**Open.** API contracts, the base URL strategy, authentication implementation, and the error shape. No client, header scheme, or endpoint map is confirmed here.
+**Established.** API calls go through one centralized client. Components do not scatter their own HTTP calls. The client is responsible for base URL, authentication headers, errors, request configuration, response normalization, timeout, and interceptors where they are needed.
 
-**Open.** The internationalization library. No library is chosen.
+**Established.** The interface handles loading, success, empty data, validation errors, authentication errors, permission errors, network errors, and server errors. A successful result is shown only after confirmation. Mock data is allowed for development and tests, is kept out of production behavior, and is never shown as real business data.
 
-Frontend permissions, once an authorization source exists, can only affect what a person sees. They are not the security boundary. How authentication and authorization are implemented is **Open**.
+**Open.** The API contracts, base URL, authentication scheme, and error body. No contract is approved in this file. Frontend permissions affect only what the user sees. They are not the security boundary.
 
----
+### 2.8 Builder and storefront
 
-## 8. Assistant
+**Established.** The builder is React and Puck, on Vite. Puck may be the visual editing engine. It is not the source of truth for business logic or for the page schema.
 
-**Product requirement.** The assistant is an operational assistant. The user can ask by voice or chat, and the system performs the panel operation.
+**Established.** Page configuration is structured, versioned data. It is not stored as executable JavaScript, JSX, or arbitrary HTML. The renderer uses a controlled registry of approved components. Shared Puck blocks are that approved set. Product, inventory, price, and other business data come from APIs, not from the page schema.
 
-**Open.** The communication architecture between the assistant interface and the rest of the system. No transport, session model, or operation protocol is chosen.
+**Established.** Draft, preview, and published versions stay separate. Each storefront resolves its tenant from the approved domain or host configuration. Tenant data and cache do not leak between stores.
 
----
+**Established.** `packages/page-schema` owns the versioned page contract, and `packages/page-blocks` owns reusable block capabilities that do not depend on Puck. Puck adapters and editor-only configuration remain in `apps/builder`. Company Website and Storefront render published content through their own application rendering entry points; neither imports Builder or Puck.
 
-## 9. Quality
+**Open.** Whether corporate pages and customer storefronts use one schema or compatible variants; the block inventory and registry strategy; schema compatibility rules; the publish and rollback workflow; and the host-to-tenant rule. None of these are specified here.
 
-**Open.** Testing priorities and the workflows that must be covered first.
+### 2.9 Assistant
 
-**Proposed, not installed.** Vitest and React Testing Library for unit and component tests, and Playwright for end-to-end tests. `frontend-rules.md` names these tools. This document does not confirm them and does not add them.
+**Established.** The assistant is an operational assistant, not only a chat window. `frontend-rules.md` section 15 requires the interface to show request, understanding, missing information, confirmation when required, execution, completion or failure, and the result. Sensitive or destructive operations require confirmation. The interface does not invent its own memory or identity mechanism.
 
-**Proposed, not installed.** TanStack Table for tables, Apache ECharts for charts, and Lucide for icons. They are not part of the confirmed stack.
+**Open.** The transport between the assistant interface and the backend.
 
-Exact dependency versions are **Open** for every library, including the confirmed ones.
+### 2.10 Knowledge files
 
----
+**Established.** Frontend knowledge files are Markdown. The approved repository tree and package ownership are documented in `architecture/project-structure.md`.
 
-## 10. What this document does not decide
+### 2.11 What this document does not build
 
-These stay **Open**. They are collected here so they are not dropped:
-
-- Node.js version, other than the ban on Node.js 16.
-- Exact dependency versions.
-- Final package and directory structure.
-- Which additional shared packages exist.
-- Global brand colors and design tokens.
-- Internationalization library.
-- API contracts and base URL strategy.
-- Authentication implementation.
-- Detailed Page Schema and publishing architecture, including the seven builder questions in section 4.
-- AI assistant communication architecture.
-- Testing priorities and workflows.
-- How a representative brand is applied.
-- Admin's module map and routes.
+**Established.** No application, package, route, or library from this document exists because it is written here. Recommended tools stay recommendations until they are approved and added in a later change.
 
 ---
 
-## 11. Decision records
+## 3. Reasoning
 
-Each record below uses the nine section 25.2 fields. The status on the record says whether the solution is confirmed.
+The platform is one business system. Four applications keep public content, daily operations, visual editing, and the public store from collapsing into a single app, while Turborepo and the four approved shared packages keep them one product.
 
-### 11.1 Four applications and their runtimes
+Vite fits Admin and Builder, which are authenticated work surfaces. Next.js fits the company site and the storefront, which need public routing and SEO. That split is already the rule and the agreed stack.
 
-**Status:** Established
+Tailwind and shadcn satisfy the styling rule without a second styling system. Putting each component in its own folder, leaving pages as composition, and keeping modules free of appearance keeps presentation, behavior, and data access apart.
 
-**Problem:** The frontend has to cover a public corporate site, business management, visual page editing, and public customer stores without collapsing them into one application.
+Puck is confined to editing. Page schema and business APIs remain the source of truth so a storefront cannot drift from stock, price, or accounting.
 
-**Proposed solution:** Four applications with the runtimes in section 3: Company Website on Next.js, Admin on React and Vite, Builder on React, Vite, and Puck, Storefront on Next.js.
+The legacy shop-panel and the current Vite app are not used as the structure. Carrying either forward would make the new frontend a copy of a narrower product.
 
-**Reasoning:** Public sites need a Next.js renderer. Admin and Builder are application surfaces and use Vite. The four responsibilities are different enough to be separate applications.
+---
 
-**Alternatives considered:** One Next.js application for all four roles. Not chosen. Admin and Builder are Vite applications. Using a legacy frontend's structure was not chosen. This product is greenfield.
+## 4. Alternatives considered
 
-**Affected applications:** Company Website, Admin, Builder, Storefront.
+- **Use the current Vite application as the architecture.** Rejected. This frontend is greenfield. That app must not dictate the structure.
+- **Use the legacy shop-panel as the architecture.** Rejected. The only agreed carry-over is the panel login palette.
+- **Use CSS Modules instead of Tailwind and shadcn.** Not chosen. The rules allow an approved styling system, and Tailwind and shadcn are that system.
+- **Put Website, Admin, Builder, and Storefront in one Next.js application.** Not chosen. Admin and Builder are Vite applications.
+- **Introduce micro frontends.** Not proposed. The rules forbid that without an approved decision.
+- **Let Puck own the page schema and business data.** Rejected. The rules keep Puck as an editing engine only.
+- **Install every library named in the rules now.** Rejected. The rules say that list is not permission to install every library in every application.
 
-**Dependencies:** React, TypeScript, Next.js, Vite, and Puck, as named above. Versions are **Open**.
+---
 
-**Compatibility implications:** A change to one application's runtime does not by itself change the others, because applications do not depend on each other. Shared packages, once they exist, are the compatibility surface.
+## 5. Affected applications
 
-**Migration requirements:** None. No confirmed legacy dependency.
+The decision applies to the future Company site, Admin, Builder, and Storefront, and to the shared packages they will use.
 
-**Testing requirements:** **Open.**
+No existing application file is changed by this document. The four applications are not claimed to be present in this repository under this architecture.
 
-### 11.2 Builder scope
+---
 
-**Status:** Established
+## 6. Dependencies
 
-**Problem:** Joorweb needs visual page editing for its own corporate website and for customer storefronts. A storefront-only builder would leave the corporate site outside the editor.
+**Established intent, not installed by this document.**
 
-**Proposed solution:** Builder is a shared website-building application. It edits and manages both the corporate website and customer storefront websites.
+- TypeScript
+- React
+- Next.js for the company site and the storefront
+- Vite for Admin and Builder
+- Puck for the builder
+- Turborepo
+- pnpm
+- Tailwind and shadcn
+- Zustand
+- TanStack Query
+- Zod and React Hook Form
 
-**Reasoning:** The two public surfaces both need designed pages. One builder can serve both without making either renderer depend on the other. The corporate site and a customer store are still different products surfaces, so their blocks, schema, and publish rules are not assumed to be the same.
+**Established constraint.** Node.js 16 is forbidden. The required Node version is **Open**.
 
-**Alternatives considered:** A builder that edits only customer storefronts. Not chosen.
+**Proposed, not approved, and not installed.**
 
-**Affected applications:** Builder, Company Website, Storefront. Admin is not the page editor.
+- TanStack Table for tables
+- Apache ECharts for charts
+- Lucide for icons
+- Vitest, React Testing Library, and Playwright for tests
+- The extra shared packages listed in section 2.4
 
-**Dependencies:** The Builder runtime in section 11.1. No further dependency is confirmed for this decision.
+Package versions are **Open**. Adding any dependency later still has to follow `frontend-rules.md` section 2.2: check what already exists, check shared packages, weigh bundle size and maintenance, skip a dependency for trivial work, and document a significant addition.
 
-**Compatibility implications:** Builder must be able to target both kinds of page. Company Website and Storefront must each be able to render the published result that belongs to them. Identity of schema, blocks, and pipelines across the two targets is **Open** and must not be assumed.
+---
 
-**Migration requirements:** None. No confirmed legacy dependency.
+## 7. Compatibility implications
 
-**Testing requirements:** **Open.**
+The shared UI, design-tokens, page-schema, and page-blocks packages affect their consuming applications. A change to any of these packages is a cross-application change under `frontend-rules.md` section 23.
 
-### 11.3 Editing versus rendering
+Tailwind and shadcn, configured through the shared design-tokens package and consumed by the shared UI package, are the styling surface. A later change to brand color, type, spacing, radius, shadow, breakpoints, or shared components is a design-system change under section 21 and needs impact review before it is made.
 
-**Status:** Established
+Persian, English, RTL, and LTR have to work in every application. A component that works in only one direction is not complete.
 
-**Problem:** The editor and the public sites have different jobs. If a public app also owns editing, or if Builder serves the public site, the boundaries blur.
+Storefront tenants must stay isolated. Preview content and published content must stay isolated. Representative branding, once decided, must not fork the applications into separate codebases.
 
-**Proposed solution:** Builder edits and manages pages. Company Website renders published corporate pages. Storefront renders published customer storefront pages. Applications do not depend on each other.
+Admin and the assistant display business figures only from confirmed data. They must not invent revenue, stock, or accounting results.
 
-**Reasoning:** Editing, corporate rendering, and customer-store rendering can change for different reasons. Keeping them as three applications, with Admin as the fourth, matches the confirmed boundaries.
+---
 
-**Alternatives considered:** Letting Storefront both edit and render customer pages, and letting Company Website both edit and render corporate pages. Not chosen. Builder is the editor for both.
+## 8. Decision record: repository layout and initial shared packages
 
-**Affected applications:** Builder, Company Website, Storefront.
+**Status:** Established — approved by the user.
 
-**Dependencies:** None beyond the confirmed runtimes. How a published page is delivered to a renderer is **Open**.
+**Problem:** The frontend needs a predictable monorepo layout that keeps four application responsibilities separate while sharing foundational UI, design tokens, page schema, and reusable page blocks without creating unnecessary packages.
 
-**Compatibility implications:** Renderers depend on the published page contract, not on Builder source. That contract is **Open**. Until it exists, neither renderer should import Builder.
+**Proposed solution:** Use the approved directory tree in `architecture/project-structure.md`: `apps/website`, `apps/admin`, `apps/builder`, and `apps/storefront`; plus `packages/ui`, `packages/design-tokens`, `packages/page-schema`, and `packages/page-blocks`. Manage the repository with pnpm Workspaces and Turborepo. Keep Puck-specific code inside Builder. Keep application-specific features and workflows inside their owning application.
 
-**Migration requirements:** None. No confirmed legacy dependency.
+**Reasoning:** The four applications have distinct runtime and product responsibilities. The four initial packages correspond to confirmed cross-application capabilities. A Puck-independent page schema and block layer allow Builder to edit pages without making public rendering applications depend on the editor. Deferring speculative packages reduces initial coordination and maintenance cost.
 
-**Testing requirements:** **Open.**
+**Alternatives considered:** A single application for all surfaces; rejected because the four application boundaries are established. A `puck-blocks` package; rejected because public renderers must not depend on Puck. Creating every candidate shared package immediately; rejected because API, authentication, permissions, internationalization, and renderer boundaries are not yet sufficiently specified. A generic `common` or `utils` package; rejected because it obscures ownership.
 
-### 11.4 Puck and Page Schema
+**Affected applications:** Company Website, Admin, Builder, and Storefront, plus the four initial shared packages.
 
-**Status:** Established for the boundary below. The schema design is **Open**.
+**Dependencies:** pnpm Workspaces, Turborepo, React, TypeScript, Next.js, Vite, Puck in Builder, Tailwind, and shadcn. Exact versions and Node.js version remain Open; Node.js 16 is forbidden.
 
-**Problem:** A visual editor needs a saved page model. If that model is the editor's private format, the Next.js renderers and any later editor are tied to Puck.
+**Compatibility implications:** Applications may import shared packages but not one another. Shared packages may not import from `apps/*`. Puck must remain isolated to Builder. Changes to `ui`, `design-tokens`, `page-schema`, or `page-blocks` require impact review across every consumer. Public renderers consume the published page contract and approved block capabilities, not Builder source code.
 
-**Proposed solution:** Puck is the visual editing layer only. Page Schema is structured, versioned, and independent of Puck's internal representation. Puck does not own business logic.
+**Migration requirements:** Greenfield implementation. Do not migrate the legacy shop-panel or current Vite application structure. Create the workspace and packages according to the approved tree when implementation begins.
 
-**Reasoning:** Company Website and Storefront must render published pages without embedding the editor. Business data stays outside the page document.
+**Testing requirements:** Verify workspace dependency boundaries; verify each application can build independently; verify shared packages build and type-check; verify the page schema and blocks can be consumed without importing Puck into Company Website or Storefront; verify RTL/LTR and responsive behavior in all applications.
 
-**Alternatives considered:** Using Puck's internal data as the canonical page model. Not chosen.
+---
 
-**Affected applications:** Builder, Company Website, Storefront.
+## 9. Migration requirements
 
-**Dependencies:** Puck in Builder. No Page Schema library or package is confirmed.
+**Established.** There is no migration of the legacy shop-panel architecture or of the current Vite application into this frontend.
 
-**Compatibility implications:** Stored pages must remain readable without Puck-specific meaning as the canonical model. Whether both targets share one schema or use compatible variants is **Open**. Versioning and backward compatibility are **Open**.
+**Established.** The shop-panel login palette is a visual input for the panel login only.
 
-**Migration requirements:** None. No confirmed legacy dependency.
+**Open.** Any later move of users, domains, or content from an older surface. No frontend data migration is specified here.
 
-**Testing requirements:** **Open.**
+No backend, database, authentication server, or infrastructure change is part of this document.
 
-### 11.5 Draft, preview, and published
+---
 
-**Status:** Established that the three states stay distinct. How they are implemented is **Open**.
+## 10. Testing requirements
 
-**Problem:** An editor needs unpublished work, a way to look at it, and a public result. Mixing those states would publish unfinished pages or hide the live page.
+**Established.** `frontend-rules.md` section 16 requires unit tests, integration tests, end-to-end tests for important workflows, and checks for RTL, LTR, mobile, tablet, desktop, loading, empty, error, long text, and large data sets. TypeScript checks are required. A written change is not complete until it is verified.
 
-**Proposed solution:** Draft, preview, and published remain distinct states. Only published pages are what Company Website and Storefront render as the public result.
+**Proposed.** Vitest and React Testing Library for unit and integration tests, and Playwright for end-to-end tests. These tools are not installed.
 
-**Reasoning:** The editor and the public renderers do not share a single mutable page. The confirmed split in section 11.3 needs a published state the renderers can trust.
+**Open.** The first workflows that must have end-to-end coverage, and the viewports that count as the required set beyond the categories already named in the rules.
 
-**Alternatives considered:** One saved state that is both the editor document and the public page. Not chosen.
-
-**Affected applications:** Builder, Company Website, Storefront.
-
-**Dependencies:** **Open.** No storage, preview host, or publish pipeline is confirmed.
-
-**Compatibility implications:** Preview must not be treated as published. Whether both targets share one publish pipeline is **Open**.
-
-**Migration requirements:** None. No confirmed legacy dependency.
-
-**Testing requirements:** **Open.**
-
-### 11.6 Blocks
-
-**Status:** Established that shared reusable blocks are supported and that application-specific blocks may exist. The inventory and the registry shape are **Open**.
-
-**Problem:** Corporate pages and storefront pages need reusable page parts, and they may also need parts that do not belong in both places.
-
-**Proposed solution:** The architecture allows shared reusable blocks and application-specific blocks. It does not decide that every block is shared, and it does not decide that the two targets use one registry.
-
-**Reasoning:** Forcing one block set would either bloat the corporate site with store features or strip the storefront of commerce blocks. Forcing two unrelated systems would duplicate the editor. Both options stay available until a block list is confirmed.
-
-**Alternatives considered:** One mandatory block set for every target. Not chosen, because sameness is not assumed. Fully separate block systems with no shared infrastructure. Not chosen, because shared reusable blocks are supported.
-
-**Affected applications:** Builder, Company Website, Storefront. Admin is unaffected unless a later decision puts a block in Admin, which is not decided.
-
-**Dependencies:** **Open.** No block package is confirmed.
-
-**Compatibility implications:** A shared block used by both renderers must be safe in both. An application-specific block must not be required by the other application. Which blocks fall into which group is **Open**.
-
-**Migration requirements:** None. No confirmed legacy dependency.
-
-**Testing requirements:** **Open.**
-
-### 11.7 Monorepo
-
-**Status:** Established for pnpm workspaces and Turborepo. The directory tree is **Open**.
-
-**Problem:** Four applications and their reusable capabilities need one place to live without becoming one application.
-
-**Proposed solution:** One monorepo managed with pnpm workspaces and Turborepo. Application code and shared capabilities are separate workspace members. The member list and paths are **Open**. A sketch is listed as **Proposed** in section 5 and is not adopted by this decision.
-
-**Reasoning:** Workspaces give each application and package its own boundary. Turborepo is the confirmed way to run tasks across that workspace. Naming folders now would pretend the package list is decided.
-
-**Alternatives considered:** Separate repositories per application. Not chosen. A single application package with no workspaces. Not chosen.
-
-**Affected applications:** Company Website, Admin, Builder, Storefront, and any future shared packages.
-
-**Dependencies:** pnpm and Turborepo. Versions are **Open**. Node.js 16 is forbidden. The required Node.js version is **Open**.
-
-**Compatibility implications:** Workspace members still follow section 11.8. A package added later is a cross-application change if more than one application uses it.
-
-**Migration requirements:** None. No confirmed legacy dependency.
-
-**Testing requirements:** **Open.**
-
-### 11.8 Dependency direction
-
-**Status:** Established
-
-**Problem:** If applications import each other, or if a shared package imports an application, a change in one place forces the others and cycles become likely.
-
-**Proposed solution:** Applications do not depend on applications. Shared packages do not depend on applications. Circular dependencies are not allowed. Shared packages contain reusable capabilities, not an application's business workflow.
-
-**Reasoning:** This is what keeps the four runtimes independent while still allowing a shared UI package and shared blocks.
-
-**Alternatives considered:** Letting Storefront or Company Website import Builder to reuse editor components. Not chosen. Letting a shared package call back into an application for a workflow. Not chosen.
-
-**Affected applications:** All four, plus every shared package.
-
-**Dependencies:** None. This is a constraint on future packages, not a new library.
-
-**Compatibility implications:** Reuse goes through shared packages. An application-specific workflow stays in that application even if two screens look similar.
-
-**Migration requirements:** None. No confirmed legacy dependency.
-
-**Testing requirements:** **Open.**
-
-### 11.9 UI composition and styling
-
-**Status:** Established for the rules in section 6. Placement of shadcn inside a package is **Proposed**. Global tokens are **Open**.
-
-**Problem:** The four applications need one way to build screens, or each will invent its own components and styles.
-
-**Proposed solution:** TypeScript and React. Each component owns its style and lives in its own folder. A page only composes components. A module has no appearance. Styling is Tailwind and shadcn. A shared UI package holds reusable controls. The panel-login palette in section 2 applies only to that login.
-
-**Reasoning:** The composition rules keep presentation out of data modules. Tailwind and shadcn are the confirmed styling system, so CSS Modules are not introduced beside them.
-
-**Alternatives considered:** CSS Modules as the styling system. Not chosen. Copying the legacy shop-panel structure. Not chosen. Treating the login palette as the platform brand. Not chosen.
-
-**Affected applications:** All four, through the shared UI package once its contents are decided.
-
-**Dependencies:** React, TypeScript, Tailwind, and shadcn. Versions are **Open**. A design-token package is **Open**, not confirmed.
-
-**Compatibility implications:** A shared control used by more than one application must keep one appearance and one behavior. Brand tokens, when they exist, will affect every application that uses them. They are not defined yet.
-
-**Migration requirements:** None. No confirmed legacy dependency. The login palette is not a migration of the legacy panel.
-
-**Testing requirements:** **Open.**
-
-### 11.10 Server state, client state, and forms
-
-**Status:** Established for the three libraries. API and auth integration are **Open**.
-
-**Problem:** Screen state, server data, and form validation need owners. Without that, each application will fetch and store data differently.
-
-**Proposed solution:** TanStack Query for server state. Zustand for client state. React Hook Form with Zod for forms.
-
-**Reasoning:** These roles are different. Server cache, local UI state, and form state should not be one store.
-
-**Alternatives considered:** No alternative library set is confirmed, and this document does not invent one. The confirmed set stands.
-
-**Affected applications:** All four, wherever they load server data or submit forms.
-
-**Dependencies:** TanStack Query, Zustand, Zod, and React Hook Form. Versions are **Open**.
-
-**Compatibility implications:** Shared packages that fetch data would need to follow the same server-state approach. Whether fetching lives in a shared package is **Open**.
-
-**Migration requirements:** None. No confirmed legacy dependency.
-
-**Testing requirements:** **Open.**
-
-### 11.11 Node.js 16
-
-**Status:** Established as a ban. The replacement version is **Open**.
-
-**Problem:** A frontend toolchain has to name the runtime it will not support, without pretending a version has been selected.
-
-**Proposed solution:** Node.js 16 must not be used. No other version is required by this document.
-
-**Reasoning:** The ban is confirmed. Choosing 18, 20, 22, or another line here would be an invented decision.
-
-**Alternatives considered:** None confirmed.
-
-**Affected applications:** All four, and the workspace tooling.
-
-**Dependencies:** The chosen Node.js version, which is **Open**. pnpm and Turborepo must run on that version once it is chosen.
-
-**Compatibility implications:** **Open** until a version is chosen. The only confirmed implication is that Node.js 16 is out of scope.
-
-**Migration requirements:** None. No confirmed legacy dependency.
-
-**Testing requirements:** **Open.**
+This document adds no tests and runs none.
