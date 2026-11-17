@@ -93,14 +93,14 @@ The panel-login reference palette does not cross these boundaries.
 
 ## 4. Design Tokens
 
-Tokens are the only approved way to express reusable visual decisions. Components do not hardcode one-off colors, sizes, or shadows. Final values are not set in this document.
+Tokens are the only approved way to express reusable visual decisions. Components do not hardcode one-off colors, sizes, or shadows. Final values are not set in this document. Approved typography values are Established in [typography.md](typography.md). This overview does not repeat them.
 
 Names are semantic. A name describes role, not a raw value and not a legacy screen. The naming shape is `{category}.{role}.{modifier}` when a modifier is needed. The concrete prefix, file format, and the mapping onto Tailwind are unresolved. Tailwind and shadcn are the established styling system. CSS Modules are not a second system.
 
 Categories, and what each one names:
 
 - **Color.** Brand, semantic (information, success, warning, danger), surface, text, and border roles. Values are specified only in [colors.md](colors.md).
-- **Typography.** Family roles, size roles, weight roles, and line-height roles for Persian and English. Values are specified only in [typography.md](typography.md).
+- **Typography.** Family roles, size roles, weight roles, and line-height roles for Persian and English. Font families and the approved type scale are Established. Weights, line heights, letter spacing, and the decisions that remain Open are specified only in [typography.md](typography.md).
 - **Spacing.** A single scale for inset, gap, and stack. No extra one-off steps inside a component.
 - **Sizing.** Control heights, icon slots, and touch targets. Numeric minimums are not chosen here.
 - **Radius.** A short scale from sharp to round. Components pick a role, not an arbitrary radius.
@@ -133,7 +133,7 @@ Principles:
 - Empty, loading, and error views explain the situation and the next useful step.
 - Real metrics appear only after the platform confirms them.
 
-This section does not select brand colors, font families, an illustration style, or an icon library. Those choices are unresolved. Icon buttons still need an accessible name even before a library is chosen. The component shapes that use icons are catalogued in [components.md](components.md), not here.
+This section does not select brand colors, an illustration style, or an icon library. Those choices are unresolved. Font families and the approved type scale are Established in [typography.md](typography.md). Icon buttons still need an accessible name even before a library is chosen. The component shapes that use icons are catalogued in [components.md](components.md), not here.
 
 ---
 
@@ -183,7 +183,7 @@ Persian (RTL) and English (LTR) are first-class. Direction is part of the layout
 
 **Mixed language.** Labels, errors, and agent messages must be able to render either language. Do not assume a string is short, or that it is Latin.
 
-**Numbers and financial values.** Quantities, money, dates, and identifiers stay readable and correctly ordered in both directions. The design system does not invent a currency or a calendar. It requires that the formatted value, once provided, aligns and isolates correctly. Financial figures use tabular figures where the type face provides them. The face itself is not chosen here. See [typography.md](typography.md).
+**Numbers and financial values.** Quantities, money, dates, and identifiers stay readable and correctly ordered in both directions. The design system does not invent a currency or a calendar. It requires that the formatted value, once provided, aligns and isolates correctly. Financial figures use tabular figures where the type face provides them. The approved families are Established in [typography.md](typography.md). Whether those faces provide tabular figures, and how they are enabled, stays Open there.
 
 **Forms and tables.** Labels, help, and errors stay associated with the field in both directions. Table headers and numeric columns align in a way that survives direction change. Sort indicators and row actions mirror with the direction.
 
@@ -388,7 +388,9 @@ The design system is centrally governed. An application team does not change a g
 
 These items are unresolved. This document does not choose them.
 
-- Final color values, font families, font sizes, and the illustration style.
+Font families and the approved type scale are Established in [typography.md](typography.md). They are not open decisions. That file remains the source for the typography decisions that are still Open.
+
+- Final color values and the illustration style.
 - The icon library.
 - Numeric values for spacing, sizing, radius, border width, shadow, motion, elevation, and breakpoints.
 - The token identifier prefix, file format, and the mapping from tokens onto Tailwind.
