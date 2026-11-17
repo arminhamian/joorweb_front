@@ -8,7 +8,7 @@ This file owns typography for Joorweb. Application boundaries, Puck, Page Schema
 
 The decisions in sections 1 through 11 are Established where a value or rule is stated. CSS blocks are **illustrative**. They show an approved rule. They are not a shipped stylesheet, not a token file, and not a font path.
 
-frontend-architecture.md section 2.5 still describes typography as Open. design-system.md section 16 still lists font families and font sizes as unresolved. Those files were not edited. Both are pending documentation synchronization, not open typography decisions. The type decisions in this file stay Established. This file does not close spacing, radius, shadow, breakpoints, or any other non-type token.
+Cross-document synchronization with design-system.md and frontend-architecture.md is complete. Those files recognize the approved typography system and point here for the detail. The type decisions in this file stay Established where a value or rule is stated. This file does not close spacing, radius, shadow, breakpoints, or any other non-type token.
 
 ---
 
@@ -403,4 +403,4 @@ Anti-patterns:
 
 ### Documentation sync
 
-- frontend-architecture.md section 2.5 still describes typography as Open. design-system.md section 16 still lists font families and font sizes as unresolved. Those files were not edited. Both are pending documentation synchronization, not open typography decisions. The decisions in this file stay Established.
+- Cross-document synchronization is complete. design-system.md and frontend-architecture.md section 2.5 recognize the approved typography system and delegate the detail to this file. Decisions this file marks Open stay Open.

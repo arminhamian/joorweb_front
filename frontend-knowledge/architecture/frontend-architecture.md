@@ -111,7 +111,9 @@ The exact directory tree and package responsibilities are specified in `architec
 
 **Established.** The panel login uses the shop-panel login palette: page `#F5F6FA`, card `#FFFFFF`, text `#1E293B`, and the colored panel gradient `#6366F1` → `#4F46E5` → `#7C3AED`. That palette does not define the architecture and does not set the brand for the rest of the platform. The sample colors in `frontend-rules.md` section 4.1 are illustrative only.
 
-**Open.** Brand colors, typography, spacing, radius, shadow, and breakpoints for the platform beyond the panel login. They need an approved design system. This file does not invent them.
+**Open.** Brand colors, spacing, radius, shadow, and breakpoints for the platform beyond the panel login. They need an approved design system. This file does not invent them.
+
+**Established.** The approved typography system is recorded in `design-system/typography.md`. Families, the type scale, weights, line heights, and the related rules are delegated there. This file does not restate them. Decisions that file marks Open stay Open.
 
 ### 2.6 Language and layout
 
