@@ -15,7 +15,7 @@ The owning documents remain:
 - `frontend-rules.md`: mandatory frontend engineering rules and AI coding-agent guidelines.
 - `architecture/frontend-architecture.md`: frontend architecture and the authoritative `Established`, `Proposed`, and `Open` decision statuses.
 - `design-system/design-system.md`: shared visual and interaction foundations.
-- Specialized files such as `colors.md`, `typography.md`, `components.md`, application documents, and development documents remain the intended owners of their subjects when they contain approved content. They are currently empty in the source set used to prepare this glossary and are therefore not cited as definition sources.
+- Specialized files such as `colors.md`, `typography.md`, `components.md`, application documents, and development documents remain the intended owners of their subjects when they contain approved content. `typography.md` contains the approved typography system and is the source for type decisions. This glossary does not restate that system. The other specialized files are not cited here as definition sources.
 
 ### Established, Proposed, and Open
 
@@ -241,10 +241,10 @@ Definition status describes how clearly the documents define a term. Architectur
 
 - **Preferred term:** Design token
 - **Other names:** Token; design-system token.
-- **Definition:** A named design value consumed by shared UI foundations. The design-system document describes tokens as the shared foundation for values such as color, typography, spacing, and related visual properties. Final values, naming prefix, file format, and Tailwind mapping remain undecided.
+- **Definition:** A named design value consumed by shared UI foundations. The design-system document describes tokens as the shared foundation for values such as color, typography, spacing, and related visual properties. Approved typography values are Established in `design-system/typography.md`. Naming prefix, file format, Tailwind mapping, and the type decisions that file still marks Open remain undecided.
 - **Definition status:** `Partial`
-- **Architecture status:** `Open` for final token values and token implementation details.
-- **Source:** `design-system/design-system.md`, sections 3–4 and 16; `frontend-rules.md`, section 4.1.
+- **Architecture status:** `Established` for the approved typography values in `typography.md`. `Open` for token implementation details and for typography decisions that file still marks Open.
+- **Source:** `design-system/design-system.md`, sections 3–4 and 16; `design-system/typography.md`; `frontend-rules.md`, section 4.1.
 - **Do not confuse with:** An organization-specific override. An override supplies a value to an allowed token; it does not create a replacement component or a separate design system.
 
 ### Styling system
