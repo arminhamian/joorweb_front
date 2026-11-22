@@ -6,7 +6,7 @@ Application boundaries, package layout, and Puck stay in [frontend-architecture.
 
 `components.md` was empty. This is the component record.
 
-`development/component-guidelines.md` exists as the component implementation guide. It complements the catalog in this file. It is not a restatement of the catalog. The file is written and uncommitted. It is not an approved final decision. `applications/website.md`, `applications/admin.md`, `applications/builder.md`, and `applications/storefront.md` are empty. Those files do not add component decisions. This file does not fill them and does not invent behavior they might later own.
+`development/component-guidelines.md` exists as the component implementation guide. It complements the catalog in this file. It is not a restatement of the catalog. The file is in the repository. It is not an approved final decision, and it does not settle an Open or Proposed item. `applications/website.md`, `applications/admin.md`, `applications/builder.md`, and `applications/storefront.md` record each application’s boundary. They do not add component decisions, close an Open item, or invent behavior this catalog does not already allow.
 
 **Established** means a decision the source documents already made. **Proposed** means a recommendation or a catalog candidate the sources support as a needed UI shape. It is not approved as a built component, and it is not installed. **Open** means ownership, layer, existence, or another decision is still required.
 
@@ -434,7 +434,7 @@ Shared page blocks that both public renderers can show are a separate inventory.
 
 **Established.** No application imports another to reuse these pieces. [design-system.md](design-system.md) section 13.
 
-**Open.** Admin’s module map. Whether corporate pages and storefronts share one schema, one registry, or one publish pipeline. Which blocks are shared. The four application files are empty and do not close these items.
+**Open.** Admin’s module map. Whether corporate pages and storefronts share one schema, one registry, or one publish pipeline. Which blocks are shared. The four application files record those boundaries and leave these items Open. They do not close them.
 
 Illustrative Admin areas in [frontend-rules.md](../frontend-rules.md) sections 3.1 and 14.1, including Dashboard, Products, Inventory, Sales, Orders, Customers, Accounting, Reports, Marketing, Integrations, Settings, and AI Assistant, are not a component list and not a route list.
 
@@ -621,7 +621,7 @@ Zod schemas that express a business rule live with the feature that owns the rul
 
 **Established.** Documentation matches what is approved. A written specification is not evidence that a screen works. [design-system.md](design-system.md) section 15.
 
-Before a catalog candidate is implemented, its own note must exist and must use the template below. This file is that gate. It is not a filled template for every row. Exact props, sizes, and tokens stay Open until that note is approved. `development/component-guidelines.md` exists as the component implementation guide. It complements the catalog in this file. It is not a restatement of the catalog, and it is not a substitute for the template. The file is written and uncommitted. It is not an approved final decision.
+Before a catalog candidate is implemented, its own note must exist and must use the template below. This file is that gate. It is not a filled template for every row. Exact props, sizes, and tokens stay Open until that note is approved. `development/component-guidelines.md` exists as the component implementation guide. It complements the catalog in this file. It is not a restatement of the catalog, and it is not a substitute for the template. The file is in the repository. It is not an approved final decision, and it does not settle an Open or Proposed item.
 
 Required headings:
 
@@ -706,7 +706,7 @@ These differences are in the sources. This specification records them. It does n
 6. **Tables and charts.** TanStack Table and Apache ECharts are Proposed. Catalog candidates for tables and charts do not adopt them.
 7. **Color finality.** [colors.md](colors.md) marks many ramps and role maps Proposed. [design-system.md](design-system.md) section 16 still lists final color values as unresolved. Components do not treat Proposed color values as Established.
 8. **Viewport test list.** Rules section 16.4 names mobile, tablet, and desktop. Rules section 6 and design-system.md section 7 also require laptop and large desktop. Pixel widths stay Open.
-9. **Guidelines file.** `component-guidelines.md` exists as the component implementation guide. It complements the catalog in this file. It is not a restatement of the catalog. The file is written and uncommitted. It is not an approved final decision. The four application files are empty. They neither confirm nor contradict a catalog row.
+9. **Guidelines file.** `component-guidelines.md` exists as the component implementation guide. It complements the catalog in this file. It is not a restatement of the catalog. The file is in the repository. It is not an approved final decision, and it does not settle an Open or Proposed item. The four application files record application boundaries. They neither confirm nor contradict a catalog row.
 
 ---
 

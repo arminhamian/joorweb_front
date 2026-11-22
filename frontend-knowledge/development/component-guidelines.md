@@ -46,6 +46,10 @@ This file does not own business rules, authorization, API contracts, Page Schema
 
 A page only composes components. A component does not reach into another application. Extend by variant, slot, or composition. Do not copy a component into another application to change one detail. Do not split every small fragment into its own component. [components.md](../design-system/components.md) section 3.
 
+**Established.** Avoid an excessively large component. [frontend-rules.md](../frontend-rules.md) sections 8.2 and 11.1.
+
+**Established.** Do not create a decorative control that appears interactive and does nothing. [frontend-rules.md](../frontend-rules.md) section 5.2.
+
 The examples of each class in the design system are not an approved inventory. The catalog of candidates is [components.md](../design-system/components.md) section 14. This file does not add a row to it.
 
 **Established.** React and TypeScript are the UI library and language. Tailwind CSS is the styling foundation. shadcn/ui is the component foundation in the rules. The architecture names that same system “Tailwind and shadcn.” CSS Modules are not a second styling system. [frontend-rules.md](../frontend-rules.md) section 2.2. [frontend-architecture.md](../architecture/frontend-architecture.md) section 2.5. The two names are one foundation. Which spelling is canonical stays unresolved. Section 23.
@@ -238,6 +242,10 @@ Builder may offer a viewport preview. That preview is an editing aid. It is not 
 - Empty means there is nothing to show, and the view says what the person can do next when a next step exists.
 - Disabled means the control is unavailable. The reason is available when the person needs it. A disabled color is not an authorization decision. [colors.md](../design-system/colors.md) section 10.
 
+**Established.** A destructive action uses a confirmation that explains the consequences. [frontend-rules.md](../frontend-rules.md) sections 5.1 and 5.4. The examples in those sections are examples. They are not a route list and not a module map.
+
+**Established.** Do not silently ignore an operation failure. [frontend-rules.md](../frontend-rules.md) section 5.3.
+
 Agent lifecycle words use these component states. They are not a second visual language. [components.md](../design-system/components.md) section 8.
 
 ---
@@ -253,10 +261,12 @@ Agent lifecycle words use these component states. They are not a second visual l
 - Do not fabricate an API response.
 - Do not show success before confirmation.
 - Handle empty and nullable fields.
-- Handle pagination. Do not load an entire large set when a page is enough.
+- Handle pagination.
 - Every API-dependent surface can show loading, success, an empty response, a validation error, an authentication error, a permission error, a network error, and a server error.
 - Mock data is for development and tests. It is kept out of production behavior. It is never shown as real business data.
 - Product, inventory, price, and other business data come from APIs, not from Page Schema. [frontend-architecture.md](../architecture/frontend-architecture.md) section 2.8.
+
+**Established.** Do not load an entire large set when a page is enough. [frontend-rules.md](../frontend-rules.md) section 11.3. [design-system.md](../design-system/design-system.md) section 7.
 
 A component renders data it is given. It does not own the query, the contract, or the business record.
 
@@ -298,7 +308,9 @@ Do not display an unconfirmed status or an unconfirmed result as if the platform
 **Established.** [frontend-rules.md](../frontend-rules.md) sections 10.1, 10.4, and 10.5.
 
 - Do not put secrets, credentials, or private tokens in frontend code, logs, URLs, client storage, or error text.
-- Do not invent an authentication mechanism. Do not store credentials in insecure browser storage. [frontend-rules.md](../frontend-rules.md) section 10.2.
+- Do not invent an authentication mechanism. Do not store credentials in insecure browser storage. The authentication mechanism remains Open. This file does not invent one. [frontend-rules.md](../frontend-rules.md) section 10.2.
+- Handle session expiration. [frontend-rules.md](../frontend-rules.md) section 10.2.
+- Handle unauthorized requests consistently. [frontend-rules.md](../frontend-rules.md) section 10.2.
 - Validate input. Do not render unsafe HTML. Treat API data as untrusted.
 - A password field, if implemented later, does not store credentials in insecure browser storage and does not invent an authentication mechanism. [components.md](../design-system/components.md) section 19.
 
@@ -316,6 +328,7 @@ Whether an unauthorized action is hidden, disabled, or explained stays Open, bey
 - Do not do expensive work on every render.
 - Paginate or virtualize a large set. Do not render the entire set when a page is enough.
 - Do not import a large library for a small feature.
+- Lazy-load, dynamically import where appropriate, and split code so a small feature does not pull a large unused surface. Optimize image loading. [frontend-rules.md](../frontend-rules.md) section 11.2. “Where appropriate” is the rule’s limit. It is not permission to invent a loading threshold.
 
 **Proposed, not installed.** TanStack Table for tables. Apache ECharts for charts. [frontend-rules.md](../frontend-rules.md) section 2.2. A Data Table or Chart Container candidate does not adopt those libraries. [components.md](../design-system/components.md) section 14.
 
@@ -408,6 +421,8 @@ Review confirms all of the following.
 - A raw HTTP call inside an unrelated component.
 - `any`, or a type check bypassed to pass a build.
 - A component copied into another application to change one detail.
+- A decorative control that looks interactive and does nothing.
+- A destructive action with no confirmation of its consequences.
 - Status shown by color alone, weight alone, or size alone.
 - A claim that the component conforms to WCAG.
 - Lucide, TanStack Table, Apache ECharts, Vitest, React Testing Library, or Playwright installed because a source named them.

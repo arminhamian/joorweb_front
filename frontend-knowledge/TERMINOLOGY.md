@@ -15,7 +15,7 @@ The owning documents remain:
 - `frontend-rules.md`: mandatory frontend engineering rules and AI coding-agent guidelines.
 - `architecture/frontend-architecture.md`: frontend architecture and the authoritative `Established`, `Proposed`, and `Open` decision statuses.
 - `design-system/design-system.md`: shared visual and interaction foundations.
-- Specialized files such as `colors.md`, `typography.md`, `components.md`, application documents, and development documents remain the intended owners of their subjects when they contain approved content. `typography.md` contains the approved typography system and is the source for type decisions. This glossary does not restate that system. The other specialized files are not cited here as definition sources.
+- Specialized files such as `colors.md`, `typography.md`, `components.md`, application documents, and development documents remain the intended owners of their subjects when they contain approved content. `typography.md` contains the approved typography system and is the source for type decisions. This glossary does not restate that system. `design-system/components.md` contains the component catalog, the layer meanings, and the Agent Interaction Components family. This glossary does not restate the 90-row catalog. A catalog row stays Proposed or Open as that file marks it. `development/component-guidelines.md` is the component implementation guide. It complements the catalog, it is not a restatement of the catalog, and it does not settle an Open or Proposed item. This glossary does not restate it. Application documents and the other development documents are cited only where they record a boundary already stated by an owning document. They are not a second architecture.
 
 ### Established, Proposed, and Open
 
@@ -72,7 +72,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** A broad area of product capability referenced by the architecture and design documents. The current documents name areas such as CRM, ERP, finance, warehouse, orders, marketing, and the assistant, but do not establish a complete product taxonomy or final module map.
 - **Definition status:** `Partial`
 - **Architecture status:** `Open` for the final Admin module map and navigation inventory.
-- **Source:** `design-system/design-system.md`, section 13; `frontend-rules.md`, sections 14.1 and 14.2; `architecture/frontend-architecture.md`, section 10.
+- **Source:** `design-system/design-system.md`, section 13; `frontend-rules.md`, sections 14.1 and 14.2; `architecture/frontend-architecture.md`, section 2.2.
 - **Do not confuse with:** An application. A product area is not automatically a separately deployed frontend application.
 
 ### Representative branding
@@ -96,7 +96,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** The public-facing Next.js application responsible for rendering published corporate pages. It does not embed Builder and does not edit pages.
 - **Definition status:** `Explicit`
 - **Architecture status:** `Established` as one of the four frontend applications and as a Next.js application.
-- **Source:** `architecture/frontend-architecture.md`, sections 3 and 11.1; `frontend-rules.md`, section 3.1; `design-system/design-system.md`, section 13.
+- **Source:** `architecture/frontend-architecture.md`, section 2.2; `frontend-rules.md`, section 3.1; `design-system/design-system.md`, section 13.
 - **Do not confuse with:** Storefront. Company Website renders Joorweb's corporate pages; Storefront renders customer-facing pages for stores.
 
 ### Admin
@@ -106,7 +106,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** The React + Vite management application. It provides the shared management experience for platform capabilities and product areas. The final module map and navigation inventory have not been decided.
 - **Definition status:** `Explicit` for its application role; `Partial` for its complete scope.
 - **Architecture status:** `Established` as one of the four applications and as React + Vite; `Open` for the final module map.
-- **Source:** `architecture/frontend-architecture.md`, sections 3 and 10; `frontend-rules.md`, sections 3.1 and 14; `design-system/design-system.md`, section 13.
+- **Source:** `architecture/frontend-architecture.md`, section 2.2; `frontend-rules.md`, sections 3.1 and 14; `design-system/design-system.md`, section 13.
 - **Do not confuse with:** Builder. Admin manages the platform; Builder provides page-editing capabilities.
 
 ### Builder
@@ -116,7 +116,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** The React + Vite application that provides visual editing for both Company Website pages and customer Storefront pages. It owns the editing experience, not the published rendering of those pages.
 - **Definition status:** `Explicit`
 - **Architecture status:** `Established` as one of the four applications and as React + Vite with Puck; the exact shared block set and publishing treatment remain `Open`.
-- **Source:** `architecture/frontend-architecture.md`, sections 3–4 and decision records 11.2–11.6; `frontend-rules.md`, section 13; `design-system/design-system.md`, section 13.
+- **Source:** `architecture/frontend-architecture.md`, sections 2.2 and 2.8; `frontend-rules.md`, section 13; `design-system/design-system.md`, section 13.
 - **Do not confuse with:** Company Website or Storefront. Builder edits pages; those applications render published output.
 
 ### Storefront
@@ -126,7 +126,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** The Next.js frontend application that renders published customer pages for multiple stores. It uses the active tenant's content and allowed theme and must prevent tenant data or theme from leaking across stores.
 - **Definition status:** `Explicit`
 - **Architecture status:** `Established` as one of the four applications and as a Next.js application; host-to-tenant resolution remains `Open`.
-- **Source:** `architecture/frontend-architecture.md`, sections 3 and 11.1; `frontend-rules.md`, sections 3.1 and 13.6; `design-system/design-system.md`, section 13.
+- **Source:** `architecture/frontend-architecture.md`, sections 2.2 and 2.8; `frontend-rules.md`, sections 3.1 and 13.6; `design-system/design-system.md`, section 13.
 - **Do not confuse with:** Builder, which edits customer pages; or the general commerce capability, which may be broader than this named frontend application.
 
 ### Application boundaries
@@ -136,7 +136,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** The defined separation of responsibilities among Company Website, Admin, Builder, and Storefront. Shared capabilities may be consumed by applications, but one application must not take over another application's assigned responsibility.
 - **Definition status:** `Explicit`
 - **Architecture status:** `Established`
-- **Source:** `architecture/frontend-architecture.md`, sections 3 and 11.1–11.3; `frontend-rules.md`, sections 3 and 23; `design-system/design-system.md`, section 13.
+- **Source:** `architecture/frontend-architecture.md`, sections 2.2 and 2.4; `frontend-rules.md`, sections 3 and 23; `design-system/design-system.md`, section 13.
 - **Do not confuse with:** Package boundaries. Application responsibilities and shared package structure are related but not identical.
 
 ---
@@ -150,7 +150,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** The selected visual editing layer used by Builder. Puck is not the canonical owner of Page Schema and does not own business logic or the published rendering applications.
 - **Definition status:** `Explicit`
 - **Architecture status:** `Established` for its role as the editing layer.
-- **Source:** `architecture/frontend-architecture.md`, decision record 11.4; `frontend-rules.md`, sections 13.1–13.2.
+- **Source:** `architecture/frontend-architecture.md`, sections 2.4 and 2.8; `frontend-rules.md`, sections 13.1–13.2.
 - **Do not confuse with:** Page Schema. Puck is the editor; Page Schema is the platform's structured page representation.
 
 ### Page Schema
@@ -160,7 +160,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** Structured, versioned page data independent of Puck. It is not executable JavaScript, JSX, or HTML. The current documents establish these characteristics but do not fully specify its fields, validation model, or complete schema.
 - **Definition status:** `Partial`
 - **Architecture status:** `Established` for structured/versioned data independent of Puck; detailed schema design remains `Open`.
-- **Source:** `architecture/frontend-architecture.md`, sections 4 and decision record 11.4; `frontend-rules.md`, section 13.2.
+- **Source:** `architecture/frontend-architecture.md`, sections 2.4 and 2.8; `frontend-rules.md`, section 13.2.
 - **Do not confuse with:** Puck's internal editor state or executable frontend code.
 
 ### Block
@@ -170,7 +170,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** A reusable page-level unit used in the page-building model. The documents establish the use of blocks and discuss shared versus application-specific blocks, but do not fully define the block data contract or complete catalog.
 - **Definition status:** `Partial`
 - **Architecture status:** `Established` for the block concept; whether the two page targets share one block set remains `Open`.
-- **Source:** `architecture/frontend-architecture.md`, decision records 11.2, 11.3, and 11.6; `frontend-rules.md`, sections 13.1–13.4.
+- **Source:** `architecture/frontend-architecture.md`, section 2.8; `frontend-rules.md`, sections 13.1–13.4.
 - **Do not confuse with:** A UI component. A block may be implemented using components, but the terms describe different levels of the system.
 
 ### Component Registry
@@ -180,7 +180,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** A named registry concept associated with the Builder/page model. The documents do not provide a complete definition of its data structure, registration API, ownership, or runtime behavior.
 - **Definition status:** `Ambiguous`
 - **Architecture status:** `Open` for the relationship between the page targets, one block registry, and the publishing pipeline.
-- **Source:** `frontend-rules.md`, section 13.3; `architecture/frontend-architecture.md`, section 10 and decision record 11.6.
+- **Source:** `frontend-rules.md`, section 13.3; `architecture/frontend-architecture.md`, section 2.8.
 - **Do not confuse with:** A component catalog or the Page Schema. The current documents do not establish that these are the same thing.
 
 ### Draft
@@ -190,7 +190,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** A page version or state that is being edited and is not the published output. The Builder must make its draft status visible.
 - **Definition status:** `Explicit`
 - **Architecture status:** `Established`
-- **Source:** `architecture/frontend-architecture.md`, decision record 11.5; `frontend-rules.md`, section 13.5; `design-system/design-system.md`, section 13.
+- **Source:** `architecture/frontend-architecture.md`, section 2.8; `frontend-rules.md`, section 13.5; `design-system/design-system.md`, section 13.
 - **Do not confuse with:** Published content. A draft must not be represented as the live published page.
 
 ### Preview
@@ -200,7 +200,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** A way to inspect a page before or separately from its published presentation. The documents distinguish preview from draft and published, but do not fully specify preview URLs, authorization, data isolation, or rendering infrastructure.
 - **Definition status:** `Partial`
 - **Architecture status:** `Established` for its distinction from draft and published; implementation details remain `Open` where not specified.
-- **Source:** `architecture/frontend-architecture.md`, decision record 11.5; `frontend-rules.md`, section 13.5; `design-system/design-system.md`, sections 13 and 16.
+- **Source:** `architecture/frontend-architecture.md`, section 2.8; `frontend-rules.md`, section 13.5; `design-system/design-system.md`, sections 13 and 16.
 - **Do not confuse with:** The Preview environment or deployment environment. The source usage in the page model concerns page presentation, not a fully defined infrastructure environment.
 
 ### Published
@@ -210,7 +210,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** The page output designated as the live/published version and rendered by Company Website or Storefront, not by Builder.
 - **Definition status:** `Explicit`
 - **Architecture status:** `Established`
-- **Source:** `architecture/frontend-architecture.md`, decision records 11.3 and 11.5; `frontend-rules.md`, section 13.5; `design-system/design-system.md`, section 13.
+- **Source:** `architecture/frontend-architecture.md`, section 2.8; `frontend-rules.md`, section 13.5; `design-system/design-system.md`, section 13.
 - **Do not confuse with:** Draft or Preview.
 
 ### Publishing
@@ -220,7 +220,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** The process by which page content becomes the published output consumed by Company Website or Storefront. The documents establish the separation between editing and rendering but do not define the complete pipeline, deployment mechanics, or transaction model.
 - **Definition status:** `Partial`
 - **Architecture status:** `Open` for the detailed publishing pipeline and whether the two page targets share one pipeline.
-- **Source:** `architecture/frontend-architecture.md`, sections 4 and 10, decision records 11.3 and 11.5; `frontend-rules.md`, section 13.5.
+- **Source:** `architecture/frontend-architecture.md`, section 2.8; `frontend-rules.md`, section 13.5.
 - **Do not confuse with:** Rendering. Publishing makes a version available as published content; rendering displays that content.
 
 ---
@@ -254,26 +254,27 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** The chosen frontend styling technologies and conventions. Tailwind CSS and shadcn/ui are established in the architecture; this does not mean every implementation detail or package name is settled.
 - **Definition status:** `Partial`
 - **Architecture status:** `Established` for Tailwind CSS and shadcn/ui; other styling details remain as recorded in the architecture document.
-- **Source:** `architecture/frontend-architecture.md`, section 6 and decision record 11.9; `frontend-rules.md`, sections 2.1–2.2.
+- **Source:** `architecture/frontend-architecture.md`, section 2.5; `frontend-rules.md`, sections 2.1–2.2.
 - **Do not confuse with:** The design system, which defines shared design decisions and behavior rather than only the styling technology.
 
 ### Component
 
 - **Preferred term:** Component
 - **Other names:** UI component; shared component (when reused across applications).
-- **Definition:** A reusable frontend UI unit with its own structure, behavior, and styling responsibility. The rules require components to be designed for clear responsibility, typed props, reuse where appropriate, and consistent states.
+- **Definition:** A reusable frontend UI unit with its own structure, behavior, and styling responsibility. The rules require components to be designed for clear responsibility, typed props, reuse where appropriate, and consistent states. The candidate catalog, the layer meanings, and the Agent Interaction Components family are recorded in `design-system/components.md`. This glossary does not restate that catalog.
 - **Definition status:** `Explicit`
-- **Architecture status:** `Established` for the shared component approach; exact catalog and package location may remain open.
-- **Source:** `frontend-rules.md`, sections 8 and 22; `design-system/design-system.md`, sections 9–10.
+- **Architecture status:** `Established` for the shared component approach and for `packages/ui` as the home of shared application-agnostic primitives and composites. Individual catalog rows remain Proposed or Open as `components.md` marks them. Exact props remain Open.
+- **Source:** `frontend-rules.md`, sections 8 and 22; `design-system/design-system.md`, sections 9–10; `design-system/components.md`, sections 3, 4, and 14; `development/component-guidelines.md`.
 - **Do not confuse with:** Block. A block belongs to the page-building model; a component is a frontend implementation unit.
 
 ### Primitive, composite, and pattern
 
 - **Preferred term:** Primitive / Composite / Pattern
 - **Other names:** Component levels.
-- **Definition:** Terms used to describe different levels of UI composition in the design-system context. The current source documents refer to these categories but do not provide a complete formal taxonomy or exhaustive criteria for assigning every component to one category.
-- **Definition status:** `Partial`
-- **Source:** `design-system/design-system.md`, section 9.
+- **Definition:** The three component layers recorded in `design-system/components.md` section 3: Primitive, Composite, and Pattern. This glossary does not restate the layer table or the catalog. A row’s Layer in that catalog is not its Scope and is not its Status.
+- **Definition status:** `Explicit` for the three layer meanings. Which candidate uses which layer is the catalog row, not this glossary.
+- **Architecture status:** Not an architecture-document status. `components.md` section 3 marks the layer meanings Established. Catalog rows stay Proposed or Open.
+- **Source:** `design-system/components.md`, section 3; `design-system/design-system.md`, section 9; `development/component-guidelines.md`, section 2.
 - **Do not confuse with:** Product modules or Builder blocks.
 
 ### Component state
@@ -335,7 +336,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** A repository structure that contains the frontend applications and shared packages in one coordinated codebase. The established repository approach is pnpm Workspaces with Turborepo.
 - **Definition status:** `Explicit`
 - **Architecture status:** `Established`
-- **Source:** `architecture/frontend-architecture.md`, section 5 and decision record 11.7; `frontend-rules.md`, sections 3.2–3.3.
+- **Source:** `architecture/frontend-architecture.md`, sections 2.3 and 8; `frontend-rules.md`, sections 3.2–3.3.
 - **Do not confuse with:** A single application. A monorepo can contain multiple independently responsible applications.
 
 ### Shared package
@@ -345,7 +346,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** A package in the monorepo that provides reusable capabilities to more than one application. Shared packages are an established architectural direction; exact package names, paths, and complete package tree are not finalized.
 - **Definition status:** `Partial`
 - **Architecture status:** `Established` for shared packages; exact names and structure remain `Open`.
-- **Source:** `architecture/frontend-architecture.md`, sections 5 and 11.7–11.8; `frontend-rules.md`, section 3.2.
+- **Source:** `architecture/frontend-architecture.md`, sections 2.3 and 2.4; `frontend-rules.md`, section 3.2.
 - **Do not confuse with:** An application. A shared package is consumed by applications and must not silently take ownership of their responsibilities.
 
 ### Package-name candidates
@@ -367,7 +368,7 @@ Definition status describes how clearly the documents define a term. Architectur
   2. In design-system/engineering wording, a module may refer to a unit of application or code organization. The design-system document explicitly says a module has no appearance.
 - **Definition status:** `Ambiguous` unless the context identifies which meaning is intended.
 - **Architecture status:** `Open` for the final Admin module map.
-- **Source:** `design-system/design-system.md`, sections 13–15; `frontend-rules.md`, sections 14 and 21; `architecture/frontend-architecture.md`, section 10.
+- **Source:** `design-system/design-system.md`, sections 13–15; `frontend-rules.md`, sections 14 and 21; `architecture/frontend-architecture.md`, section 2.2.
 - **Do not confuse with:** A frontend application, a shared package, or a UI component. When writing new documentation, qualify the term as `Admin functional module` or `code module` whenever ambiguity is possible.
 
 ### Dependency direction
@@ -376,7 +377,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Other names:** Dependency rule.
 - **Definition:** The allowed direction of dependencies between applications and shared capabilities in the frontend architecture. The architecture document treats dependency direction as an explicit architectural concern; implementation-specific package paths are not inferred by this glossary.
 - **Definition status:** `Partial`
-- **Source:** `architecture/frontend-architecture.md`, decision record 11.8; `frontend-rules.md`, sections 3.3 and 23.
+- **Source:** `architecture/frontend-architecture.md`, section 2.4; `frontend-rules.md`, sections 3.3 and 23.
 - **Do not confuse with:** Runtime communication between applications.
 
 ---
@@ -390,7 +391,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** Data whose authoritative source is the server and that the frontend retrieves and synchronizes. TanStack Query is the established library for server-state management.
 - **Definition status:** `Explicit`
 - **Architecture status:** `Established`
-- **Source:** `architecture/frontend-architecture.md`, section 7 and decision record 11.10; `frontend-rules.md`, sections 9.1 and 9.2.
+- **Source:** `architecture/frontend-architecture.md`, section 2.7; `frontend-rules.md`, sections 9.1 and 9.2.
 - **Do not confuse with:** Client state.
 
 ### Client state
@@ -400,7 +401,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** State owned and managed in the frontend client rather than treated as server-authoritative data. Zustand is the established library for client-state management.
 - **Definition status:** `Explicit`
 - **Architecture status:** `Established`
-- **Source:** `architecture/frontend-architecture.md`, section 7 and decision record 11.10; `frontend-rules.md`, section 9.1.
+- **Source:** `architecture/frontend-architecture.md`, section 2.7; `frontend-rules.md`, section 9.1.
 - **Do not confuse with:** Server state or form state.
 
 ### Form state
@@ -410,7 +411,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** The values and validation-related state associated with user input forms. React Hook Form and Zod are the established choices in the architecture.
 - **Definition status:** `Explicit`
 - **Architecture status:** `Established`
-- **Source:** `architecture/frontend-architecture.md`, section 7 and decision record 11.10; `frontend-rules.md`, section 9.1.
+- **Source:** `architecture/frontend-architecture.md`, section 2.7; `frontend-rules.md`, section 9.1.
 - **Do not confuse with:** General client state. Form state has form-specific validation and submission responsibilities.
 
 ### API contract
@@ -420,7 +421,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** The agreed interface between frontend and backend, including the data and behavior the frontend may rely on. The rules require integration to follow defined contracts and prohibit inventing missing backend functionality. The complete contract format and API inventory are not defined in the current frontend documents.
 - **Definition status:** `Partial`
 - **Architecture status:** `Open` for API contracts, base URL, and authentication implementation where identified by the architecture document.
-- **Source:** `frontend-rules.md`, sections 9.2, 24.4, and 24.5; `architecture/frontend-architecture.md`, section 10.
+- **Source:** `frontend-rules.md`, sections 9.2, 24.4, and 24.5; `architecture/frontend-architecture.md`, section 2.7.
 - **Do not confuse with:** Mock data. Mock data must not be presented as a real API contract.
 
 ### API client
@@ -440,7 +441,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** The process by which the system establishes the identity of a user or session. The frontend rules require authentication behavior to follow the platform's actual implementation and do not permit the UI to invent authentication outcomes.
 - **Definition status:** `Partial`
 - **Architecture status:** `Open` for the frontend authentication implementation where identified by the architecture document.
-- **Source:** `frontend-rules.md`, section 10.2; `architecture/frontend-architecture.md`, section 10.
+- **Source:** `frontend-rules.md`, section 10.2; `architecture/frontend-architecture.md`, section 2.7.
 - **Do not confuse with:** Authorization or permissions.
 
 ### Authorization
@@ -449,7 +450,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Other names:** Access decision.
 - **Definition:** The system's decision about whether an identified user is allowed to perform an operation or access a resource. The backend is authoritative for this decision; frontend visibility or disabled controls are not security enforcement.
 - **Definition status:** `Explicit`
-- **Source:** `frontend-rules.md`, section 10.3; `design-system/design-system.md`, section 14.4.
+- **Source:** `frontend-rules.md`, section 10.3; `design-system/design-system.md`, section 14.
 - **Do not confuse with:** Authentication. Authentication establishes identity; authorization determines allowed actions.
 
 ### Permission
@@ -481,7 +482,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** The user-facing assistant capability inside Joorweb through which a person may interact by supported input modes and initiate business operations. The frontend documents define interaction and presentation requirements but leave transport, session model, memory mechanism, and parts of orchestration unresolved.
 - **Definition status:** `Partial`
 - **Architecture status:** `Open` for transport and related mechanisms identified in the architecture document.
-- **Source:** `architecture/frontend-architecture.md`, section 8; `frontend-rules.md`, section 15; `design-system/design-system.md`, section 14.
+- **Source:** `architecture/frontend-architecture.md`, section 2.9; `frontend-rules.md`, section 15; `design-system/design-system.md`, section 14; `design-system/components.md`, sections 16 and 17. The Agent catalog rows are not restated here.
 - **Do not confuse with:** An AI coding agent that works on the source code.
 
 ### Agent
@@ -490,7 +491,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Other names:** Product agent (when referring to an operational agent in Joorweb).
 - **Definition:** In the product UI context, an operational actor that can propose and perform platform operations within the permissions of the person and organization. The UI must represent its identity, status, operation, progress, result, errors, and relevant history.
 - **Definition status:** `Explicit` for the product-UI meaning.
-- **Source:** `design-system/design-system.md`, section 14; `frontend-rules.md`, section 15.
+- **Source:** `design-system/design-system.md`, section 14; `frontend-rules.md`, section 15; `design-system/components.md`, sections 16 and 17. Family membership does not make a catalog row Established.
 - **Do not confuse with:** An AI coding agent. The coding agent is a development tool/actor governed by `frontend-rules.md`, sections 17–18; it is not the same as an operational agent inside Joorweb.
 
 ### AI coding agent
@@ -515,7 +516,7 @@ Definition status describes how clearly the documents define a term. Architectur
   - **Failure / Failed:** the operation failed.
   - **Cancellation / Cancelled:** the operation was stopped.
 - **Definition status:** `Explicit`
-- **Source:** `design-system/design-system.md`, section 14.2; `frontend-rules.md`, section 15.
+- **Source:** `design-system/design-system.md`, section 14; `frontend-rules.md`, section 15; `design-system/components.md`, sections 16 and 17. The presentation candidates stay Proposed or Open as that catalog marks them. This glossary does not restate those rows.
 - **Do not confuse with:** Progress indicators or request checkpoints. A status communicates the current operation state; progress communicates movement while executing.
 
 ### Operation lifecycle
@@ -524,7 +525,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Other names:** Agent execution lifecycle; operation flow.
 - **Definition:** The sequence from request and interpretation through missing-information handling, required approval, execution, and a confirmed terminal outcome with a presented result or recovery path.
 - **Definition status:** `Explicit`
-- **Source:** `design-system/design-system.md`, section 14.3; `frontend-rules.md`, sections 15.2–15.6.
+- **Source:** `design-system/design-system.md`, section 14; `frontend-rules.md`, sections 15.2–15.6; `design-system/components.md`, sections 16 and 17.
 - **Do not confuse with:** The status vocabulary. Lifecycle describes the sequence; statuses label the operation's state at a point in time.
 
 ### Human approval
@@ -533,7 +534,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Other names:** Explicit approval; confirmation (when the operation requires authorization).
 - **Definition:** An explicit approval by a person with the required permission before a sensitive or irreversible operation may proceed to the authorized state. Dismissing an approval dialog is not approval.
 - **Definition status:** `Explicit`
-- **Source:** `design-system/design-system.md`, section 14.5; `frontend-rules.md`, sections 15.3 and 5.4.
+- **Source:** `design-system/design-system.md`, section 14; `frontend-rules.md`, sections 15.3 and 5.4; `design-system/components.md`, sections 16 and 17. Human Handoff remains Open in that catalog and is not this term.
 - **Do not confuse with:** A generic acknowledgement or the operation's completed result.
 
 ### Operation result
@@ -542,7 +543,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Other names:** Agent result; execution result.
 - **Definition:** The outcome presented after the platform confirms what happened. The interface must not show success before that confirmation; failure and cancellation must remain distinct from completion.
 - **Definition status:** `Explicit`
-- **Source:** `design-system/design-system.md`, sections 14.2 and 14.6; `frontend-rules.md`, sections 15.4–15.5.
+- **Source:** `design-system/design-system.md`, section 14; `frontend-rules.md`, sections 15.4–15.5; `design-system/components.md`, sections 16 and 17.
 - **Do not confuse with:** A proposal, progress update, or optimistic assumption.
 
 ### Agent history and audit
@@ -552,7 +553,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** The UI presentation of past agent operations for authorized people. The design-system document distinguishes history presentation from the platform's responsibility for the underlying audit record and storage.
 - **Definition status:** `Partial`
 - **Architecture status:** `Open` for history persistence/storage where identified by the architecture document.
-- **Source:** `design-system/design-system.md`, section 14.7; `architecture/frontend-architecture.md`, sections 8 and 10.
+- **Source:** `design-system/design-system.md`, sections 14 and 16; `architecture/frontend-architecture.md`, section 2.9.
 - **Do not confuse with:** A client-generated activity list that is not backed by platform records.
 
 ---
@@ -566,7 +567,7 @@ Definition status describes how clearly the documents define a term. Architectur
 - **Definition:** The frontend must support Persian and English content and interfaces. The current rules define language and direction handling requirements but do not select the final internationalization library.
 - **Definition status:** `Explicit`
 - **Architecture status:** `Open` for the internationalization library.
-- **Source:** `frontend-rules.md`, section 7; `design-system/design-system.md`, section 8; `architecture/frontend-architecture.md`, section 10.
+- **Source:** `frontend-rules.md`, section 7; `design-system/design-system.md`, section 8; `architecture/frontend-architecture.md`, section 2.6.
 
 ### RTL and LTR
 
@@ -682,7 +683,7 @@ The following terms appear in the source documents, but the current frontend kno
 - `architecture/frontend-architecture.md` remains the authoritative source for `Established`, `Proposed`, and `Open` architecture status.
 - `frontend-rules.md` remains the mandatory engineering reference. A glossary definition does not weaken, extend, or replace a rule.
 - `design-system/design-system.md` remains the presentation and interaction reference. A term defined from that document does not automatically become an architecture decision.
-- Empty specialized documents are not used as definition sources until they contain approved content.
+- A specialized document is a definition source only for a decision it records as already approved. `typography.md` is cited for type and is not restated here. `design-system/components.md` and `development/component-guidelines.md` are cited for the catalog and the implementation guide and are not restated here. A boundary file that repeats an owning document and lists Open items is not a new decision.
 - When two source documents use a term differently, this glossary records the distinction rather than silently merging the meanings.
 - When an entry is incomplete or ambiguous, the glossary says so. It does not fill the gap using assumptions or general industry definitions.
 - When an owning document changes, the corresponding glossary entry must be reviewed. The glossary must not become more authoritative than its source.
